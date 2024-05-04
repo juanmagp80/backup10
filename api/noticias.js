@@ -29,14 +29,21 @@ module.exports = (upload) => {
         try {
             // Sube el archivo a Cloudinary
             const result = await cloudinary.uploader.upload(req.file.path);
+            if (!req.body) {
+                return res.status(400).send('Faltan datos en la solicitud');
+            }
 
             // Desestructura req.body y agrega la URL de la imagen de Cloudinary
-            const { titulo, descripcion, fecha } = req.body;
-            const noticia = { titulo, descripcion, fecha, imagen: result.secure_url };
+            const { titulo, descripcion, fecha, redactor } = req.body;
+            const noticia = { titulo, descripcion, fecha, redactor, imagen: result.secure_url };
+
+            if (!titulo || !descripcion || !fecha || !redactor) {
+                return res.status(400).send('Faltan datos en la solicitud');
+            }
 
             // Guarda la noticia en tu base de datos
-            const query = 'INSERT INTO noticias(titulo, descripcion, fecha, imagen) VALUES($1, $2, $3, $4)';
-            const values = [noticia.titulo, noticia.descripcion, noticia.fecha, noticia.imagen];
+            const query = 'INSERT INTO noticias(titulo, descripcion, fecha, redactor, imagen) VALUES($1, $2, $3, $4, $5)';
+            const values = [noticia.titulo, noticia.descripcion, noticia.fecha, noticia.redactor, noticia.imagen];
             await pool.query(query, values);
 
             res.status(200).json(noticia);
