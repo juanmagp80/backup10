@@ -17,6 +17,10 @@ const pool = new Pool({
     database: 'de30ho0q6rd2j8',
     password: 'peaf4d8b947bbb3004aec27d7738a396407428da61e5d42c89206d06447574ea4',
     port: 5432,
+    connectionString: process.env.DATABASE_URL,
+    ssl: {
+        rejectUnauthorized: false
+    }
 });
 
 module.exports = (upload) => {
