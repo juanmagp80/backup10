@@ -4,6 +4,8 @@ const multer = require('multer');
 const cors = require('cors');
 const morgan = require('morgan');
 const path = require('path');
+const port = process.env.PORT || 3000;
+
 // api.js
 
 const noticias = require('./api/noticias');
@@ -37,6 +39,6 @@ app.use((err, req, res, next) => {
 
 app.use('/noticias', noticiasRouter); // Utiliza el router de noticias
 
-app.listen(3000, () => {
-    console.log('Servidor iniciado en el puerto 3000');
+app.listen(port, () => {
+    console.log(`Servidor iniciado en el puerto ${port}`);
 });
