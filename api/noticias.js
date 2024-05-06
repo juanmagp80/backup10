@@ -12,10 +12,10 @@ cloudinary.config({
 // Crea una nueva instancia de Pool de pg
 const pool = new Pool({
     // Aquí van tus configuraciones de la base de datos
-    user: 'juanma',
-    host: 'localhost',
-    database: 'barca10',
-    password: 'solano28',
+    user: 'uamoj6t0idc5nd',
+    host: 'cb5ajfjosdpmil.cluster-czrs8kj4isg7.us-east-1.rds.amazonaws.com',
+    database: 'de30ho0q6rd2j8',
+    password: 'peaf4d8b947bbb3004aec27d7738a396407428da61e5d42c89206d06447574ea4',
     port: 5432,
 });
 
